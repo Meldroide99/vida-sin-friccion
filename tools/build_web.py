@@ -22,12 +22,14 @@ ICON={'Rápido':'⚡','Razonamiento':'🧠','Búsqueda':'🌐'}
 HEAD='''<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{title}</title><meta name="description" content="{desc}"><link rel="icon" href="{root}favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <link rel="stylesheet" href="{root}style.css"></head><body>'''
 def lv_html(p): return ''.join(f'<span class="nivel" title="{l}">{ICON.get(l,"")} {l}</span>' for l in p['lv'])
 def card(p):
     return f'''<article class="prompt" id="p-{p['k']}"><header><span class="code">{p['code']}</span><h3>{html.escape(p['name'])}</h3><div class="niveles">{lv_html(p)}</div></header>
-<pre>{html.escape(p['text'])}</pre><button type="button" class="copiar" aria-label="Copiar {p['code']}">Copiar</button></article>'''
+<pre class="texto">{html.escape(p['text'])}</pre>
+<div class="barra-acc"><button type="button" class="btn-p personalizar" aria-expanded="false">Personalizar</button><button type="button" class="btn-p copiar" aria-label="Copiar {p['code']}">Copiar</button><span class="estado" aria-live="polite"></span></div>
+<div class="panel" hidden></div></article>'''
 def nav(root,cur):
     items=''.join(f'<a href="{root}c{c["num"]}/"{" aria-current=\"page\"" if c["num"]==cur else ""}>{"Intro" if c["num"]=="0" else c["num"]}</a>' for c in caps)
     items+=f'<a href="{root}plantillas/"{" aria-current=\"page\"" if cur=="pl" else ""}>Plantillas</a>'
@@ -40,15 +42,23 @@ for c in caps:
     i=caps.index(c); prev=caps[i-1] if i>0 else None; nxt=caps[i+1] if i<len(caps)-1 else None
     pn=''.join([f'<a class="prev" href="../c{prev["num"]}/">← {html.escape(prev["title"])}</a>' if prev else '<span></span>', f'<a class="next" href="../c{nxt["num"]}/">{html.escape(nxt["title"])} →</a>' if nxt else ''])
     body=f'''{nav("../",c["num"])}<main class="wrap"><section class="cab-cap"><p class="etq">{lab} · {html.escape(c["parte"])}</p><h1>{html.escape(c["title"])}</h1><p class="principio">{html.escape(c["principle"])}</p>
-<p class="ayuda">Pulsa <strong>Copiar</strong>, pégalo en tu IA y rellena los corchetes. En los corchetes con barras, elige una opción o escribe la tuya.</p></section>
+</section><section class="guia" aria-label="Cómo funciona"><h2>Cómo funciona</h2><ol>
+<li><span>1</span><div><b>Pulsa Personalizar</b> en el prompt que quieras.</div></li>
+<li><span>2</span><div><b>Rellena o elige</b> tus datos. El texto se actualiza mientras escribes.</div></li>
+<li><span>3</span><div><b>Copia y pega</b> en ChatGPT, Claude o Gemini. Ya está listo.</div></li></ol>
+<p>Lo que escribes se guarda solo en este dispositivo y se reutiliza en otros prompts: tu ciudad o tu nómina se escriben una vez. ¿Prefieres hacerlo a mano? Pulsa <b>Copiar</b> directamente.</p></section>
 <div class="lista">{"".join(card(p) for p in c["prompts"])}</div><nav class="pasar">{pn}</nav></main>'''
     open(os.path.join(d,'index.html'),'w',encoding='utf-8').write(HEAD.format(title=f'{lab}: {c["title"]} · Vida sin fricción',desc=f'Prompts listos para copiar del {lab.lower()} de Vida sin fricción.',root='../')+body+FOOT.format(root='../'))
-cards=''.join(f'''<a class="capcard" href="c{c["num"]}/"><span class="num">{"·" if c["num"]=="0" else c["num"]}</span><span class="t"><b>{html.escape(c["title"])}</b><small>{len(c["prompts"])} prompt{"s" if len(c["prompts"])!=1 else ""} · {html.escape(c["principle"])}</small></span></a>''' for c in caps)
+cards=''.join(f'''<a class="capcard" href="c{c["num"]}/"><span class="num">{c["num"]}</span><span class="t"><b>{html.escape(c["title"])}</b><small>{len(c["prompts"])} prompt{"s" if len(c["prompts"])!=1 else ""} · {html.escape(c["principle"])}</small></span></a>''' for c in caps)
 data=[dict(code=p['code'],name=p['name'],url=f'c{c["num"]}/#p-{p["k"]}',cap=c['title'],q=(p['code']+' '+p['name']+' '+p['text']).lower()) for c in caps for p in c['prompts']]
-idx=f'''{nav("","")}<main class="wrap"><section class="hero"><p class="etq">El libro · Melchor</p><h1>Vida sin fricción</h1><p class="sub">Los {len(data)} prompts del libro, listos para copiar. Decide una vez, repite siempre.</p>
+idx=f'''{nav("","")}<main class="wrap"><section class="hero"><p class="etq">El libro · Melchor</p><h1>Vida sin fricción</h1><p class="sub">Los {len(data)} prompts del libro, listos para hacer tuyos y copiar. <em>Decide una vez, repite siempre.</em></p>
 <label class="buscar"><span>Buscar un prompt</span><input type="search" id="q" placeholder="Por código o tema: P 4.4, menú, seguros…" autocomplete="off"></label><ul id="res" class="res" hidden></ul></section>
-<section class="leyenda" aria-label="Niveles"><span class="nivel">⚡ Rápido</span> sirve cualquier IA <span class="nivel">🧠 Razonamiento</span> mejor con modelo avanzado <span class="nivel">🌐 Búsqueda</span> necesita buscar en internet</section>
-<section class="caps">{cards}<a class="capcard pl-card" href="plantillas/"><span class="num">✎</span><span class="t"><b>Plantillas</b><small>Perfil, menú, nómina, casa, vencimientos, Notion y plan de 30 días</small></span></a></section></main><script>window.PROMPTS={json.dumps(data,ensure_ascii=False)};</script>'''
+<section class="guia" aria-label="Cómo funciona"><h2>Cómo funciona</h2><ol>
+<li><span>1</span><div><b>Pulsa Personalizar</b> en el prompt que quieras.</div></li>
+<li><span>2</span><div><b>Rellena o elige</b> tus datos. El texto se actualiza mientras escribes.</div></li>
+<li><span>3</span><div><b>Copia y pega</b> en ChatGPT, Claude o Gemini. Ya está listo.</div></li></ol>
+<p>Lo que escribes se guarda solo en este dispositivo y se reutiliza en otros prompts: tu ciudad o tu nómina se escriben una vez. ¿Prefieres hacerlo a mano? Pulsa <b>Copiar</b> directamente.</p></section><section class="leyenda" aria-label="Niveles"><span><span class="nivel">⚡ Rápido</span> sirve cualquier IA</span><span><span class="nivel">🧠 Razonamiento</span> mejor con un modelo avanzado</span><span><span class="nivel">🌐 Búsqueda</span> necesita buscar en internet</span></section>
+<section class="caps">{cards}<a class="capcard pl-card" href="plantillas/"><span class="num">+</span><span class="t"><b>Plantillas</b><small>Perfil, menú, nómina, casa, vencimientos, Notion y plan de 30 días</small></span></a></section></main><script>window.PROMPTS={json.dumps(data,ensure_ascii=False)};</script>'''
 open(os.path.join(OUT,'index.html'),'w',encoding='utf-8').write(HEAD.format(title='Vida sin fricción · Prompts del libro',desc='Todos los prompts del libro Vida sin fricción, listos para copiar.',root='')+idx+FOOT.format(root=''))
 open(os.path.join(OUT,'404.html'),'w',encoding='utf-8').write(HEAD.format(title='Página no encontrada · Vida sin fricción',desc='',root='/vida-sin-friccion/')+nav('/vida-sin-friccion/','')+'<main class="wrap"><section class="hero"><h1>Esta página no existe</h1><p class="sub"><a href="/vida-sin-friccion/">Vuelve al inicio</a> para ver todos los prompts.</p></section></main>'+FOOT.format(root='/vida-sin-friccion/'))
 open(os.path.join(OUT,'.nojekyll'),'w').write('')
