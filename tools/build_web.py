@@ -34,7 +34,7 @@ def nav(root,cur):
     items=''.join(f'<a href="{root}c{c["num"]}/"{" aria-current=\"page\"" if c["num"]==cur else ""}>{"Intro" if c["num"]=="0" else c["num"]}</a>' for c in caps)
     items+=f'<a href="{root}plantillas/"{" aria-current=\"page\"" if cur=="pl" else ""}>Plantillas</a>'
     return f'<header class="top"><div class="wrap"><a class="marca" href="{root}">Vida <i>sin</i> fricción</a><nav aria-label="Capítulos">{items}</nav></div></header>'
-FOOT='<footer class="pie"><div class="wrap"><p>Prompts del libro <em>Vida sin fricción</em>, de Melchor. Cópialos y úsalos para ti.</p><p>Este sitio no está afiliado a OpenAI, Anthropic, Google ni Notion Labs. No recoge datos ni usa cookies.</p></div></footer><script src="{root}app.js"></script></body></html>'
+FOOT='<footer class="pie"><div class="wrap"><p>Prompts del libro <em>Vida sin fricción</em>, de M.SDT. Cópialos y úsalos para ti.</p><p>Este sitio no está afiliado a OpenAI, Anthropic, Google ni Notion Labs. No recoge datos ni usa cookies.</p></div></footer><script src="{root}app.js"></script></body></html>'
 GUIA_HTML="""<section class="guia" aria-label="Cómo funciona"><h2>Cómo funciona</h2><ol>
 <li><span>1</span><div><b>Pulsa Personalizar</b> en el prompt que quieras.</div></li>
 <li><span>2</span><div><b>Rellena o elige</b> tus datos. El texto se actualiza mientras escribes.</div></li>
@@ -60,7 +60,7 @@ pasos=''.join(f"""<li class="paso" data-k="{c['num']}"><figure class="paso-img" 
 media=''.join(f"""<figure data-k="{c['num']}"{' class="on"' if c['num']=='0' else ''}><img src="img/c{c['num']}.webp" alt="" width="1600" height="1067" loading="lazy"></figure>""" for c in caps)
 GUIA2=GUIA_HTML
 idx=f"""{nav("","")}<section class="historia" id="inicio"><div class="historia-fija"><canvas id="lienzo" aria-hidden="true"></canvas>
-<div class="h-textos"><div class="h-t h-portada" data-a="0" data-b=".17"><p class="firma">Melchor</p><h1>Vida <i>sin</i> fricción</h1><p class="sub">Los {len(data)} prompts del libro, listos para hacer tuyos y copiar.</p></div>
+<div class="h-textos"><div class="h-t h-portada" data-a="0" data-b=".17"><p class="firma">M.SDT</p><h1>Vida <i>sin</i> fricción</h1><p class="sub">Los {len(data)} prompts del libro, listos para hacer tuyos y copiar.</p></div>
 <p class="h-t h-frase" data-a=".19" data-b=".42">Tu cabeza no es una agenda.</p>
 <p class="h-t h-frase" data-a=".44" data-b=".62">Decide una vez.</p>
 <p class="h-t h-frase" data-a=".64" data-b=".82">Repite siempre.</p>
