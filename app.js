@@ -217,7 +217,7 @@
   function frame() {
     pend = false;
     var y = scrollY;
-    if (top) top.classList.toggle('solida', y > vh * 0.6 || !document.querySelector('.escena, .cab-px'));
+    if (top) top.classList.toggle('solida', y > vh * 0.6 || !document.querySelector('.historia, .cab-px'));
     if (reduce) return;
     escenas.forEach(function (sc) {
       var r = sc.getBoundingClientRect();

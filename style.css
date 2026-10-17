@@ -211,3 +211,23 @@ code{font-family:var(--f-mono);font-size:.9em;background:var(--bg);padding:.1rem
  body[data-imprimir="perfil"] #perfil,body[data-imprimir="menu"] #menu,body[data-imprimir="nomina"] #nomina,body[data-imprimir="casa"] #casa,body[data-imprimir="hogar"] #hogar,body[data-imprimir="notion"] #notion,body[data-imprimir="plan"] #plan{display:block}
  input,select,textarea{border:0;border-bottom:1px solid #999;border-radius:0;background:#fff}}
 
+
+/* ---------- Historia de portada (canvas controlado por el scroll) ---------- */
+.historia{position:relative;height:560svh}
+.historia-fija{position:sticky;top:0;height:100svh;overflow:hidden;background:radial-gradient(120% 90% at 50% 45%,#FFFFFF 0%,var(--paper) 60%,var(--mist) 100%)}
+#lienzo{position:absolute;inset:0;width:100%;height:100%;display:block}
+.h-textos{position:absolute;inset:0;pointer-events:none}
+.h-t{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 13svh);text-align:center;padding-inline:22px;margin:0;opacity:0;will-change:opacity,transform}
+.h-portada{opacity:1}
+.h-t a{pointer-events:auto}
+.h-portada h1{font-size:clamp(3rem,11vw,7.5rem);font-weight:300;line-height:.92;letter-spacing:-.035em}
+.h-portada h1 i{color:var(--gold)}
+.h-portada .sub{margin-top:1.2rem}
+.h-frase{font:300 clamp(2.2rem,7.5vw,5rem)/1.05 var(--f-display);letter-spacing:-.025em;color:var(--ink);margin:0}
+.h-final .paso-a{margin-top:1.8rem;background:var(--paper)}
+.h-progreso{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);width:min(180px,40vw);height:1px;background:var(--line-2);transform:translateX(-50%)}
+.h-progreso span{display:block;height:100%;width:100%;background:var(--gold);transform-origin:left;transform:scaleX(0)}
+.historia .desliza{bottom:calc(env(safe-area-inset-bottom,0px) + 38px);padding-bottom:0}
+.historia .desliza::after{display:none}
+@media (max-width:700px){.h-t{top:calc(env(safe-area-inset-top,0px) + 11svh)}}
+@media (prefers-reduced-motion:reduce){.historia{height:auto}.historia-fija{position:relative}.h-t{display:none}.h-portada{display:block}}
