@@ -177,3 +177,38 @@
     });
   }
 })();
+
+/* ---------- Parallax y aparición al hacer scroll ---------- */
+(function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+  // aparición
+  var items = document.querySelectorAll('.capcard, .prompt, .guia, .pl, .zona-buscar, .leyenda, .banner');
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    items.forEach(function (el, i) {
+      if (location.hash && el.matches(location.hash)) return;
+      el.classList.add('reveal'); el.style.transitionDelay = Math.min((i % 6) * 40, 200) + 'ms'; io.observe(el);
+    });
+  }
+  if (reduce) return;
+  // capas a distinta velocidad
+  var capas = [].slice.call(document.querySelectorAll('[data-speed]')).map(function (el) { return { el: el, v: parseFloat(el.dataset.speed) || 0 }; });
+  if (!capas.length) return;
+  var vh = innerHeight, pend = false;
+  function mover() {
+    pend = false;
+    capas.forEach(function (c) {
+      var r = (c.el.parentElement || c.el).getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var centro = r.top + r.height / 2 - vh / 2;
+      c.el.style.transform = 'translate3d(0,' + (-centro * c.v).toFixed(1) + 'px,0)';
+    });
+  }
+  function pedir() { if (!pend) { pend = true; requestAnimationFrame(mover); } }
+  addEventListener('scroll', pedir, { passive: true });
+  addEventListener('resize', function () { vh = innerHeight; pedir(); });
+  mover();
+})();

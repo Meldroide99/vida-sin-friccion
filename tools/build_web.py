@@ -42,7 +42,7 @@ for c in caps:
     i=caps.index(c); prev=caps[i-1] if i>0 else None; nxt=caps[i+1] if i<len(caps)-1 else None
     pn=''.join([f'<a class="prev" href="../c{prev["num"]}/">← {html.escape(prev["title"])}</a>' if prev else '<span></span>', f'<a class="next" href="../c{nxt["num"]}/">{html.escape(nxt["title"])} →</a>' if nxt else ''])
     body=f'''{nav("../",c["num"])}<main class="wrap"><section class="cab-cap"><p class="etq">{lab} · {html.escape(c["parte"])}</p><h1>{html.escape(c["title"])}</h1><p class="principio">{html.escape(c["principle"])}</p>
-</section><section class="guia" aria-label="Cómo funciona"><h2>Cómo funciona</h2><ol>
+</section><figure class="banner" aria-hidden="true"><div class="banner-img" data-speed="0.16"><img src="../img/c{c["num"]}.webp" alt="" width="1600" height="1067" loading="lazy"></div></figure><section class="guia" aria-label="Cómo funciona"><h2>Cómo funciona</h2><ol>
 <li><span>1</span><div><b>Pulsa Personalizar</b> en el prompt que quieras.</div></li>
 <li><span>2</span><div><b>Rellena o elige</b> tus datos. El texto se actualiza mientras escribes.</div></li>
 <li><span>3</span><div><b>Copia y pega</b> en ChatGPT, Claude o Gemini. Ya está listo.</div></li></ol>
@@ -51,8 +51,9 @@ for c in caps:
     open(os.path.join(d,'index.html'),'w',encoding='utf-8').write(HEAD.format(title=f'{lab}: {c["title"]} · Vida sin fricción',desc=f'Prompts listos para copiar del {lab.lower()} de Vida sin fricción.',root='../')+body+FOOT.format(root='../'))
 cards=''.join(f'''<a class="capcard" href="c{c["num"]}/"><span class="num">{c["num"]}</span><span class="t"><b>{html.escape(c["title"])}</b><small>{len(c["prompts"])} prompt{"s" if len(c["prompts"])!=1 else ""} · {html.escape(c["principle"])}</small></span></a>''' for c in caps)
 data=[dict(code=p['code'],name=p['name'],url=f'c{c["num"]}/#p-{p["k"]}',cap=c['title'],q=(p['code']+' '+p['name']+' '+p['text']).lower()) for c in caps for p in c['prompts']]
-idx=f'''{nav("","")}<main class="wrap"><section class="hero"><p class="etq">El libro · Melchor</p><h1>Vida sin fricción</h1><p class="sub">Los {len(data)} prompts del libro, listos para hacer tuyos y copiar. <em>Decide una vez, repite siempre.</em></p>
-<label class="buscar"><span>Buscar un prompt</span><input type="search" id="q" placeholder="Por código o tema: P 4.4, menú, seguros…" autocomplete="off"></label><ul id="res" class="res" hidden></ul></section>
+idx=f'''{nav("","")}<section class="hero-px"><div class="px-fondo" data-speed="0.4" aria-hidden="true"><img src="img/hero.webp" alt="" width="1600" height="1067" fetchpriority="high"></div><span class="orbe o1" data-speed="-0.25" aria-hidden="true"></span><span class="orbe o2" data-speed="0.3" aria-hidden="true"></span>
+<div class="wrap px-texto" data-speed="0.12"><p class="etq">El libro · Melchor</p><h1>Vida sin fricción</h1><p class="sub">Los {len(data)} prompts del libro, listos para hacer tuyos y copiar. <em>Decide una vez, repite siempre.</em></p><a class="bajar" href="#buscar" aria-label="Ir a los prompts">↓</a></div></section>
+<main class="wrap"><section class="zona-buscar" id="buscar"><label class="buscar"><span>Buscar un prompt</span><input type="search" id="q" placeholder="Por código o tema: P 4.4, menú, seguros…" autocomplete="off"></label><ul id="res" class="res" hidden></ul></section>
 <section class="guia" aria-label="Cómo funciona"><h2>Cómo funciona</h2><ol>
 <li><span>1</span><div><b>Pulsa Personalizar</b> en el prompt que quieras.</div></li>
 <li><span>2</span><div><b>Rellena o elige</b> tus datos. El texto se actualiza mientras escribes.</div></li>
