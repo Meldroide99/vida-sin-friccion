@@ -30,6 +30,7 @@ def card(p):
 <pre>{html.escape(p['text'])}</pre><button type="button" class="copiar" aria-label="Copiar {p['code']}">Copiar</button></article>'''
 def nav(root,cur):
     items=''.join(f'<a href="{root}c{c["num"]}/"{" aria-current=\"page\"" if c["num"]==cur else ""}>{"Intro" if c["num"]=="0" else c["num"]}</a>' for c in caps)
+    items+=f'<a href="{root}plantillas/"{" aria-current=\"page\"" if cur=="pl" else ""}>Plantillas</a>'
     return f'<header class="top"><div class="wrap"><a class="marca" href="{root}">Vida sin fricción<span>· prompts</span></a><nav aria-label="Capítulos">{items}</nav></div></header>'
 FOOT='<footer class="pie"><div class="wrap"><p>Prompts del libro <em>Vida sin fricción</em>, de Melchor. Cópialos y úsalos para ti.</p><p>Este sitio no está afiliado a OpenAI, Anthropic, Google ni Notion Labs. No recoge datos ni usa cookies.</p></div></footer><script src="{root}app.js"></script></body></html>'
 os.makedirs(OUT,exist_ok=True)
@@ -47,8 +48,12 @@ data=[dict(code=p['code'],name=p['name'],url=f'c{c["num"]}/#p-{p["k"]}',cap=c['t
 idx=f'''{nav("","")}<main class="wrap"><section class="hero"><p class="etq">El libro · Melchor</p><h1>Vida sin fricción</h1><p class="sub">Los {len(data)} prompts del libro, listos para copiar. Decide una vez, repite siempre.</p>
 <label class="buscar"><span>Buscar un prompt</span><input type="search" id="q" placeholder="Por código o tema: P 4.4, menú, seguros…" autocomplete="off"></label><ul id="res" class="res" hidden></ul></section>
 <section class="leyenda" aria-label="Niveles"><span class="nivel">⚡ Rápido</span> sirve cualquier IA <span class="nivel">🧠 Razonamiento</span> mejor con modelo avanzado <span class="nivel">🌐 Búsqueda</span> necesita buscar en internet</section>
-<section class="caps">{cards}</section></main><script>window.PROMPTS={json.dumps(data,ensure_ascii=False)};</script>'''
+<section class="caps">{cards}<a class="capcard pl-card" href="plantillas/"><span class="num">✎</span><span class="t"><b>Plantillas</b><small>Perfil, menú, nómina, casa, vencimientos, Notion y plan de 30 días</small></span></a></section></main><script>window.PROMPTS={json.dumps(data,ensure_ascii=False)};</script>'''
 open(os.path.join(OUT,'index.html'),'w',encoding='utf-8').write(HEAD.format(title='Vida sin fricción · Prompts del libro',desc='Todos los prompts del libro Vida sin fricción, listos para copiar.',root='')+idx+FOOT.format(root=''))
 open(os.path.join(OUT,'404.html'),'w',encoding='utf-8').write(HEAD.format(title='Página no encontrada · Vida sin fricción',desc='',root='/vida-sin-friccion/')+nav('/vida-sin-friccion/','')+'<main class="wrap"><section class="hero"><h1>Esta página no existe</h1><p class="sub"><a href="/vida-sin-friccion/">Vuelve al inicio</a> para ver todos los prompts.</p></section></main>'+FOOT.format(root='/vida-sin-friccion/'))
 open(os.path.join(OUT,'.nojekyll'),'w').write('')
 print(sum(len(c['prompts']) for c in caps),'prompts',[len(c['prompts']) for c in caps])
+
+d=os.path.join(OUT,'plantillas'); os.makedirs(d,exist_ok=True)
+body=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'plantillas_body.html'),encoding='utf-8').read()
+open(os.path.join(d,'index.html'),'w',encoding='utf-8').write(HEAD.format(title='Plantillas · Vida sin fricción',desc='Plantillas interactivas del libro Vida sin fricción: perfil, menú, nómina, compra de casa, vencimientos, Notion y plan de 30 días.',root='../')+nav('../','pl')+body+FOOT.format(root='../').replace('</body>','<script src="../plantillas.js"></script></body>'))

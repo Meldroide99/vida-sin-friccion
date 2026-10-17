@@ -1,0 +1,81 @@
+<main class="wrap ancho"><section class="cab-cap"><p class="etq">Anexo C · Plantillas</p><h1>Plantillas para tu sistema</h1>
+<p class="principio">Rellénalas aquí mismo, cópialas a tu IA o a Notion, o imprímelas.</p>
+<p class="ayuda">Lo que escribes se guarda solo en este navegador, en tu dispositivo. No se envía a ningún sitio.</p></section>
+<nav class="indice-pl" aria-label="Plantillas">
+<a href="#perfil"><b>1</b> Perfil base</a><a href="#menu"><b>2</b> Menú semanal</a><a href="#nomina"><b>3</b> Reparto de la nómina</a><a href="#casa"><b>4</b> Comprar casa</a><a href="#hogar"><b>5</b> Vencimientos del hogar</a><a href="#notion"><b>6</b> Segundo cerebro</a><a href="#plan"><b>7</b> Plan de 30 días</a></nav>
+
+<section class="pl" id="perfil"><header class="pl-cab"><span class="pl-n">1</span><div><h2>Ficha de perfil base</h2><p>Rellénala una vez y pégala al empezar cualquier conversación con tu IA. Es el prompt <a href="../c0/#p-0-1">P 0.1</a>, ya completo.</p></div></header>
+<div class="campos">
+<label>Ciudad<input data-k="pf-ciudad" placeholder="Madrid"></label>
+<label>Con quién vives<input data-k="pf-con" placeholder="mi pareja y un gato"></label>
+<label>Horario de trabajo<input data-k="pf-horario" placeholder="de 8:00 a 15:00"></label>
+<label>¿Cambian mucho tus tareas?<select data-k="pf-cambio"><option>poco</option><option>bastante</option><option>mucho</option></select></label>
+<label class="ancho2">Algo más que la IA debería saber (opcional)<input data-k="pf-extra" placeholder="no como carne; teletrabajo los viernes"></label></div>
+<div class="salida"><pre id="pf-out"></pre></div>
+<div class="acciones"><button class="btn" data-copy="pf-out">Copiar ficha</button><button class="btn sec" data-print="perfil">Imprimir</button></div></section>
+
+<section class="pl" id="menu"><header class="pl-cab"><span class="pl-n">2</span><div><h2>Menú semanal y lista de la compra</h2><p>Pide el menú con <a href="../c3/#p-3-2">P 3.2</a> y apúntalo aquí. La lista se agrupa por pasillos para comprar de una vez.</p></div></header>
+<div class="tabla-wrap"><table class="tabla menu"><thead><tr><th>Día</th><th>Comida</th><th>Cena</th></tr></thead><tbody id="menu-body"></tbody></table></div>
+<div class="campos"><label class="ancho2">Lista de la compra<textarea data-k="mn-lista" rows="7" placeholder="FRUTA Y VERDURA&#10;- tomates&#10;&#10;DESPENSA&#10;- arroz"></textarea></label></div>
+<div class="acciones"><button class="btn" data-copy-fn="menu">Copiar menú y lista</button><button class="btn sec" data-print="menu">Imprimir</button><button class="btn sec" data-clear="mn-">Vaciar</button></div></section>
+
+<section class="pl" id="nomina"><header class="pl-cab"><span class="pl-n">3</span><div><h2>Reparto mensual de la nómina</h2><p>Ahorro primero, después gastos fijos y lo que queda para el día a día. Capítulo 4.</p></div></header>
+<div class="campos tres">
+<label>Nómina neta al mes (€)<input type="number" inputmode="decimal" min="0" data-k="nm-neto" placeholder="1800"></label>
+<label>Ahorro (% de la nómina)<input type="number" inputmode="decimal" min="0" max="100" data-k="nm-pct" placeholder="15"></label>
+<label>Gastos fijos al mes (€)<input type="number" inputmode="decimal" min="0" data-k="nm-fijos" placeholder="850"></label></div>
+<div class="barra" id="nm-barra" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+<dl class="cifras" id="nm-out"></dl>
+<p class="nota" id="nm-aviso"></p>
+<div class="acciones"><button class="btn" data-copy-fn="nomina">Copiar reparto</button><button class="btn sec" data-print="nomina">Imprimir</button></div></section>
+
+<section class="pl" id="casa"><header class="pl-cab"><span class="pl-n">4</span><div><h2>Las seis fases de la compra de vivienda</h2><p>Empieza siempre por la fase 1. Usa <a href="../c4/#p-4-6">P 4.6</a> en cada fase para que la IA te acompañe.</p></div></header>
+<h3 class="sub-h">Fase 1 · ¿Cuánto necesito y cuándo llego?</h3>
+<div class="campos tres">
+<label>Precio de la vivienda (€)<input type="number" inputmode="decimal" min="0" data-k="cs-precio" placeholder="220000"></label>
+<label>Entrada (% del precio)<input type="number" inputmode="decimal" min="0" max="100" data-k="cs-entrada" placeholder="20"></label>
+<label>Impuestos y gastos (% del precio)<input type="number" inputmode="decimal" min="0" max="30" data-k="cs-gastos" placeholder="10"></label>
+<label>Ya tengo ahorrado (€)<input type="number" inputmode="decimal" min="0" data-k="cs-tengo" placeholder="12000"></label>
+<label>Aporto cada mes (€)<input type="number" inputmode="decimal" min="0" data-k="cs-mes" placeholder="400"></label></div>
+<dl class="cifras" id="cs-out"></dl>
+<p class="nota">Los impuestos dependen de tu comunidad autónoma y de si la vivienda es nueva o usada. Pide a la IA el porcentaje exacto con <a href="../c4/#p-4-6">P 4.6</a> y compruébalo en la web de tu comunidad. La entrada habitual suele rondar el 20 %, pero depende del banco.</p>
+<h3 class="sub-h">Lista de fases</h3>
+<ol class="check" id="cs-fases"></ol>
+<div class="acciones"><button class="btn" data-copy-fn="casa">Copiar plan</button><button class="btn sec" data-print="casa">Imprimir</button></div></section>
+
+<section class="pl" id="hogar"><header class="pl-cab"><span class="pl-n">5</span><div><h2>Carpetas del hogar y calendario de vencimientos</h2><p>Cada papel con fecha, a su carpeta y con un aviso 30 días antes. Capítulo 5.</p></div></header>
+<div class="carpetas"><span>🏠 Vivienda</span><span>🚗 Vehículo</span><span>🛡️ Seguros</span><span>💶 Impuestos</span><span>🪪 Salud y personal</span></div>
+<p class="nota">Nombra cada archivo siempre igual: <code>año-mes tipo entidad</code>. Por ejemplo, <code>2026-03 Seguro hogar Aseguradora</code>.</p>
+<div class="tabla-wrap"><table class="tabla venc"><thead><tr><th>Qué vence</th><th>Carpeta</th><th>Fecha</th><th>Importe (€)</th><th>Aviso</th><th><span class="sr">Quitar</span></th></tr></thead><tbody id="hg-body"></tbody></table></div>
+<div class="acciones"><button class="btn sec" id="hg-add">+ Añadir vencimiento</button><button class="btn" id="hg-ics">Descargar para mi calendario (.ics)</button><button class="btn sec" data-copy-fn="hogar">Copiar tabla</button><button class="btn sec" data-print="hogar">Imprimir</button></div>
+<p class="nota">El archivo .ics se abre con Google Calendar, el calendario del iPhone u Outlook y crea cada vencimiento con su aviso un mes antes.</p></section>
+
+<section class="pl" id="notion"><header class="pl-cab"><span class="pl-n">6</span><div><h2>Estructura de Mi segundo cerebro en Notion</h2><p>Una página principal con seis bases de datos. Capítulo 7.</p></div></header>
+<div class="tabla-wrap"><table class="tabla"><thead><tr><th>Base de datos</th><th>Columnas</th><th>Cap.</th></tr></thead><tbody>
+<tr><td>Notas</td><td>Título, tipo (idea / tarea / pendiente), fecha, estado</td><td>1</td></tr>
+<tr><td>Estudio</td><td>Tema, plan, resumen, próximo repaso</td><td>2</td></tr>
+<tr><td>Recetas</td><td>Nombre, tiempo, ingredientes, etiquetas, menú de la semana</td><td>3</td></tr>
+<tr><td>Finanzas</td><td><b>Gastos del mes:</b> mes, categoría, importe, fuga detectada, acción del mes.<br><b>Plan de ahorro:</b> objetivo, aportación mensual, acumulado, fecha meta</td><td>4</td></tr>
+<tr><td>Hogar</td><td><b>Seguros:</b> tipo, compañía, coberturas, prima anual, renovación, aviso.<br><b>Impuestos y tasas:</b> tributo, plazo, importe, domiciliado, aviso</td><td>5</td></tr>
+<tr><td>Trabajo</td><td>Tarea o prompt, responsable, fecha, estado</td><td>6</td></tr>
+<tr><td>Revisión semanal</td><td>Fecha, tres prioridades, notas</td><td>7</td></tr></tbody></table></div>
+<p class="nota">Con tu IA conectada a Notion, copia este encargo y pégalo en el chat: lo construye por ti.</p>
+<div class="salida"><pre id="nt-out">Créame en Notion una página llamada «Mi segundo cerebro» con estas bases de datos en formato tabla y estas columnas:
+- Notas: Título, Tipo (selección: idea / tarea / pendiente), Fecha, Estado.
+- Estudio: Tema, Plan, Resumen, Próximo repaso (fecha).
+- Recetas: Nombre, Tiempo (minutos), Ingredientes, Etiquetas, Menú de la semana (casilla).
+- Finanzas · Gastos del mes: Mes, Categoría, Importe, Fuga detectada, Acción del mes.
+- Finanzas · Plan de ahorro: Objetivo, Aportación mensual, Acumulado, Fecha meta.
+- Hogar · Seguros: Tipo, Compañía, Coberturas, Prima anual, Renovación (fecha), Aviso (fecha).
+- Hogar · Impuestos y tasas: Tributo, Plazo (fecha), Importe, Domiciliado (casilla), Aviso (fecha).
+- Trabajo: Tarea o prompt, Responsable, Fecha, Estado.
+- Revisión semanal: Fecha, Prioridad 1, Prioridad 2, Prioridad 3, Notas.
+Antes de crear nada, enséñame la estructura en una tabla y espera mi visto bueno.</pre></div>
+<div class="acciones"><button class="btn" data-copy="nt-out">Copiar encargo para la IA</button><button class="btn sec" data-print="notion">Imprimir</button></div></section>
+
+<section class="pl" id="plan"><header class="pl-cab"><span class="pl-n">7</span><div><h2>Plan de 30 días y revisión semanal</h2><p>Dos sistemas por semana y una revisión cada domingo. Marca lo que vas montando.</p></div></header>
+<ol class="check" id="pl-plan"></ol>
+<h3 class="sub-h">Revisión del domingo · 15 minutos con <a href="../c7/#p-7-3">P 7.3</a></h3>
+<ol class="check" id="pl-rev"></ol>
+<div class="acciones"><button class="btn sec" id="rev-reset">Empezar nueva semana</button><button class="btn sec" data-print="plan">Imprimir</button></div></section>
+</main>
