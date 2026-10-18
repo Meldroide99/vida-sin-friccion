@@ -7,8 +7,8 @@
 <li><span>2</span><div><b>Rellena o elige</b> tus datos. El texto se actualiza mientras escribes.</div></li>
 <li><span>3</span><div><b>Copia y pega</b> en ChatGPT, Claude o Gemini. Ya está listo.</div></li></ol>
 <p>Lo que escribes se guarda solo en este dispositivo y se reutiliza en otros prompts: tu ciudad o tu nómina se escriben una vez. ¿Prefieres hacerlo a mano? Pulsa <b>Copiar</b> directamente.</p></section>
-<div class="lista"><article class="prompt" id="p-4-1"><header><span class="code">P 4.1</span><h3>Crea tu asesor de finanzas de casa</h3><div class="niveles"><span class="nivel" title="Razonamiento">🧠 Razonamiento</span></div></header>
-<pre class="texto">Quiero que seas mi asesor de finanzas domésticas. Lee mi ficha y sigue estas instrucciones durante toda la conversación.
+<div class="lista"><article class="prompt" id="p-4-1"><header><span class="code">P 4.1</span><h3>Crea tu analista de finanzas de casa</h3><div class="niveles"><span class="nivel" title="Razonamiento">🧠 Razonamiento</span></div></header>
+<pre class="texto">Quiero que seas mi analista de finanzas domésticas. Lee mi ficha y sigue estas instrucciones durante toda la conversación.
 
 MI FICHA
 · Vivo [solo / en pareja / con familia: …]
@@ -87,37 +87,63 @@ Vamos fase a fase: 1) ¿me lo puedo permitir?, 2) buscar, 3) revisar el piso, 4)
 PARA EMPEZAR
 Hazme las preguntas que necesites y empecemos por la fase 1: cuánto dinero necesito en total, incluidos impuestos y gastos de mi comunidad, y qué cuota de hipoteca sería razonable para mí.</pre>
 <div class="barra-acc"><button type="button" class="btn-p personalizar" aria-expanded="false">Personalizar</button><button type="button" class="btn-p copiar" aria-label="Copiar P 4.5">Copiar</button><span class="estado" aria-live="polite"></span></div>
-<div class="panel" hidden></div></article><article class="prompt" id="p-4-6"><header><span class="code">P 4.6</span><h3>Analista de inversiones</h3><div class="niveles"><span class="nivel" title="Razonamiento">🧠 Razonamiento</span><span class="nivel" title="Búsqueda">🌐 Búsqueda</span></div></header>
-<pre class="texto">Actúa como un analista financiero didáctico, no como asesor. No me recomiendes productos concretos ni me digas qué comprar o vender.
-Mi situación: tengo [cantidad o porcentaje] en [cuenta, depósito, fondos, acciones, plan de pensiones…], mi horizonte es de [años] y mi objetivo es [objetivo]. Mi tolerancia a las caídas es [baja / media / alta].
-1) Explícame en lenguaje sencillo cómo está repartido mi dinero y qué riesgos y costes tiene cada parte.
-2) Calcula con números aproximados qué efecto tienen las comisiones a 10 y 20 años.
-3) Plantea 2 o 3 escenarios («si el mercado cae un 30 %…», «si subo mi aportación…»).
-4) Dame 5 preguntas para hacerle a mi banco o a un asesor.
-Cita tus fuentes y dime qué datos debo comprobar yo en la web oficial.</pre>
+<div class="panel" hidden></div></article><article class="prompt" id="p-4-6"><header><span class="code">P 4.6</span><h3>Radiografía de tus inversiones</h3><div class="niveles"><span class="nivel" title="Razonamiento">🧠 Razonamiento</span><span class="nivel" title="Búsqueda">🌐 Búsqueda</span></div></header>
+<pre class="texto">Actúa como un analista financiero didáctico e independiente, no como mi asesor. No me digas qué comprar ni qué vender, ni me recomiendes productos o entidades concretas. Tu trabajo es que entienda lo que tengo. No necesitas mi nombre ni mis números de cuenta: no me los pidas.
+
+LO QUE TENGO HOY
+· [cuenta / depósito / fondo / plan de pensiones / ETF / acciones] — [importe] € — comisión anual: [% / no lo sé]
+· [cuenta / depósito / fondo / plan de pensiones / ETF / acciones] — [importe] € — comisión anual: [% / no lo sé]
+· Colchón de emergencia: [meses de gastos] en liquidez
+· Deudas, sin contar la hipoteca: [ninguna / tarjeta / préstamo al x %]
+· Aporto [cantidad] € al mes para [objetivo] dentro de [años] años
+· Si mi inversión cae un 30 %: [vendería / esperaría / compraría más]
+
+HAZ ESTO
+1. Antes de calcular, hazme las preguntas que falten (máximo 5) y espera.
+2. Radiografía: una tabla con cuánto hay en liquidez, renta fija y bolsa, en qué países o sectores se concentra y el riesgo de cada parte en una frase. Debajo, un gráfico de quesito con el reparto.
+3. Costes en euros, no en porcentaje: lo que me cuestan las comisiones a 10 y 20 años con mi aportación, frente a la misma cartera con un coste del 0,2 % anual. Dibújalo en un gráfico de líneas, las dos carteras año a año, y úsalo para explicarme el interés compuesto.
+4. Tres escenarios con mis números, en un gráfico de barras: la bolsa cae un 30 %; necesito sacar [cantidad] € antes de tiempo; subo mi aportación [50 / 100] € al mes.
+5. Alertas, con un semáforo (verde, amarillo o rojo) para cada una: si algo no encaja con mi plazo o con mi colchón. Por ejemplo, dinero que necesitaré pronto metido en bolsa, o invertir mientras pago deudas más caras que lo que espero ganar.
+6. Cinco preguntas para mi banco o para un asesor registrado en la CNMV.
+
+GRÁFICOS
+Que se entiendan de un vistazo: pocos datos, títulos claros y una frase debajo que diga qué significa. Si no puedes crear gráficos, dibújalos con barras de texto (█) dentro de una tabla.
+
+REGLAS
+Marca cada cifra como dato (con fuente y fecha) o como estimación. Si te pego el documento de datos fundamentales de un producto, tradúcelo: qué es, cuánto cuesta y cuánto puedo perder. Dime qué debo comprobar yo en la web de la entidad o de la CNMV.</pre>
 <div class="barra-acc"><button type="button" class="btn-p personalizar" aria-expanded="false">Personalizar</button><button type="button" class="btn-p copiar" aria-label="Copiar P 4.6">Copiar</button><span class="estado" aria-live="polite"></span></div>
-<div class="panel" hidden></div></article><article class="prompt" id="p-4-7"><header><span class="code">P 4.7</span><h3>Cartera contra la inflación</h3><div class="niveles"><span class="nivel" title="Razonamiento">🧠 Razonamiento</span><span class="nivel" title="Búsqueda">🌐 Búsqueda</span></div></header>
-<pre class="texto">Actúa como un analista de carteras didáctico e independiente. No eres mi asesor: no me recomiendes productos concretos ni me digas qué comprar. Ayúdame a entender y comparar opciones.
+<div class="panel" hidden></div></article><article class="prompt" id="p-4-7"><header><span class="code">P 4.7</span><h3>Tu plan contra la inflación</h3><div class="niveles"><span class="nivel" title="Razonamiento">🧠 Razonamiento</span><span class="nivel" title="Búsqueda">🌐 Búsqueda</span></div></header>
+<pre class="texto">Actúa como un analista de carteras didáctico e independiente. No eres mi asesor: no me recomiendes fondos, productos ni entidades concretas. Quiero entender mis opciones y terminar con un plan escrito que pueda seguir sin volver a decidir cada mes.
 
 MI PUNTO DE PARTIDA
-- Patrimonio que quiero invertir: [cantidad]
-- Cómo está repartido ahora: [x % fondos de bolsa / x % renta fija / x % depósitos o cuenta / otros]
-- Aportación mensual: [cantidad]
-- Horizonte: [años] y para qué: [jubilación / independencia financiera / otro]
-- Dinero que necesitaré antes: [cantidad y fecha, p. ej. entrada de una casa, o «ninguno»]
-- Tolerancia a caídas: [aguanto un -10 % / un -25 % / un -40 % sin vender]
-- Experiencia: [fondos indexados / acciones / bonos / ETF / ninguna de estas]
+· Para invertir: [cantidad] €, y aporto [cantidad] € al mes
+· Reparto actual: [x % bolsa / x % renta fija / x % depósitos o cuenta / x % otros]
+· Dinero que necesitaré antes: [cantidad] € en [fecha], para [entrada de una casa / coche / nada]
+· El resto, a [años] años, para [jubilación / independencia financiera / otro]
+· Caída que aguanto sin vender: [-10 % / -25 % / -40 %]
+· Experiencia: [ninguna / fondos indexados / ETF / bonos / acciones]
 
-HAZ ESTO, EN ORDEN:
-1. Hazme hasta 5 preguntas si te falta algo importante. Espera mis respuestas.
-2. Busca la inflación actual en España (IPC del INE) y las previsiones del Banco de España o del BCE. Cita fuentes y fechas.
-3. Calcula cuánto poder de compra pierde mi dinero en [5 / 10 / 20] años si lo dejo como está.
-4. Propón 3 repartos de ejemplo —[conservador / equilibrado / dinámico]— entre renta variable, renta fija (corto y largo plazo) y activos ligados a la inflación. Para cada uno: rentabilidad real esperada (descontada la inflación), caída máxima histórica aproximada y en qué escenarios sufre.
-5. Explica cómo se comportaron estos repartos en periodos de inflación alta, como 2022. Separa datos históricos de estimaciones.
-6. Separa el dinero que necesitaré antes de [fecha] del dinero a largo plazo, y dime dónde tendría sentido cada uno por tipo de producto (no por nombre comercial).
-7. Explícame los costes (comisiones, TER) y la fiscalidad básica en España de cada tipo de producto, incluido el traspaso entre fondos sin tributar. Indica qué norma lo regula y que debo comprobarlo en la AEAT.
-8. Termina con una regla de rebalanceo sencilla [una vez al año / cuando una parte se desvíe más de 5 puntos] y 5 preguntas para un asesor registrado en la CNMV.
+Trabajaremos por fases. Al final de cada una, espera a que te diga «sigue».
 
-Reglas: no inventes rentabilidades, marca cada cifra como dato o estimación y pon las comparaciones en una tabla.</pre>
+FASE 1 · EL PROBLEMA CON MIS NÚMEROS
+Si te falta algo, pregúntame antes (máximo 5 preguntas). Busca el último IPC del INE y las proyecciones de inflación del Banco de España y del BCE, con su fecha. Calcula cuánto poder de compra pierde mi dinero en 5, 10 y 20 años si lo dejo como está, y enséñamelo en un gráfico de líneas: lo que valen hoy 1.000 € frente a lo que valdrán.
+
+FASE 2 · TRES REPARTOS PARA COMPARAR
+Propón tres repartos de ejemplo (conservador, equilibrado y dinámico) por tipo de activo: bolsa global, renta fija a corto y a largo plazo, bonos ligados a la inflación y liquidez. Muestra cada reparto en un gráfico de quesito. En una tabla, para cada uno: cómo le fue en 2022 (dato con fuente), su peor caída histórica aproximada y cuánto tardó en recuperarse, y qué rentabilidad real cabe esperar a largo plazo (estimación en un rango, nunca una cifra exacta). Añade un gráfico de barras que compare los tres en caída máxima y rentabilidad real. Explícame cuál encaja con la caída que aguanto y qué sacrifico con cada uno.
+
+FASE 3 · EL DINERO CON FECHA
+Separa el dinero que necesitaré en [fecha] del de largo plazo, con una línea de tiempo sencilla que muestre cada parte. Dime qué tipo de producto encaja con cada una y si conviene o no que el dinero con fecha esté en bolsa.
+
+FASE 4 · COSTES E IMPUESTOS
+Explícame las comisiones (TER) y cómo tributa en España cada tipo de producto: las ganancias al vender, y la diferencia entre fondos y ETF al traspasar. Cita la norma y dime qué comprobar en la web de la AEAT.
+
+FASE 5 · MI PLAN EN UNA PÁGINA
+Resúmelo en una página que pueda imprimir: reparto objetivo en un gráfico de quesito, aportación automática y día del mes, regla de rebalanceo [una vez al año / si una parte se desvía más de 5 puntos], qué haré si la bolsa cae un 30 % y cuándo volveré a revisarlo. Añade un semáforo: verde, no toco nada; amarillo, rebalanceo; rojo, consulto antes de decidir. Termina con 5 preguntas para un asesor registrado en la CNMV.
+
+GRÁFICOS
+Que se entiendan de un vistazo: pocos datos, títulos claros y una frase debajo que diga qué significa. Si no puedes crear gráficos, dibújalos con barras de texto (█) dentro de una tabla.
+
+REGLAS
+No inventes rentabilidades. Marca cada cifra como dato (con fuente y fecha) o como estimación.</pre>
 <div class="barra-acc"><button type="button" class="btn-p personalizar" aria-expanded="false">Personalizar</button><button type="button" class="btn-p copiar" aria-label="Copiar P 4.7">Copiar</button><span class="estado" aria-live="polite"></span></div>
 <div class="panel" hidden></div></article></div><nav class="pasar"><a class="prev" href="../c3/"><small>Anterior</small>Cocina y nutrición</a><a class="next" href="../c5/"><small>Siguiente</small>El hogar: ya no es un lío</a></nav></main><footer class="pie"><div class="wrap"><p>Prompts del libro <em>Vida sin fricción</em>, de M.SDT. Cópialos y úsalos para ti.</p><p>Este sitio no está afiliado a OpenAI, Anthropic, Google ni Notion Labs. No recoge datos ni usa cookies.</p></div></footer><script src="../app.js"></script></body></html>
